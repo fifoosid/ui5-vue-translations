@@ -66,6 +66,8 @@ import '@ui5/webcomponents/dist/Label';
 import '@ui5/webcomponents/dist/TextArea';
 import '@ui5/webcomponents-fiori/dist/ShellBar';
 import './components/TodoList.vue';
+import "@ui5/webcomponents-base/dist/features/PropertiesFormatSupport.js";
+import { registerI18nBundle, fetchI18nBundle, getI18nBundle } from "@ui5/webcomponents-base/dist/i18nBundle.js";
 
 let App = Vue.component("app", {
   data: function() {
@@ -109,6 +111,19 @@ let App = Vue.component("app", {
       todoBeingEdittedDate: "",
       selectedEditTodo: ""
     };
+  },
+  mounted: async function () {
+    registerI18nBundle("myApp", {
+        en: "./assets/messagebundle_en.properties",
+        ja: "./assets/messagebundle_ja.properties",
+    });
+    await fetchI18nBundle("myApp");
+    const bundle = getI18nBundle("myApp");     
+    // eslint-disable-next-line no-debugger
+    debugger
+    const pleaseWait = bundle.getText("PLEASE_WAIT");	
+    // eslint-disable-next-line no-console
+    console.log("Please wait in the current language is: ", pleaseWait);      
   },
   methods: {
     handleAdd: function() {
