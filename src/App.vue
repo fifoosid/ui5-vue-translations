@@ -114,8 +114,8 @@ let App = Vue.component("app", {
   },
   mounted: async function () {
     registerI18nBundle("myApp", {
-        en: "./assets/messagebundle_en.properties",
-        ja: "./assets/messagebundle_ja.properties",
+        en: "./i18n/messagebundle_en.properties",
+        ja: "./i18n/messagebundle_ja.properties",
     });
     await fetchI18nBundle("myApp");
     const bundle = getI18nBundle("myApp");     
